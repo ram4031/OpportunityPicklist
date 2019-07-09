@@ -3,7 +3,7 @@
         var action = component.get("c.getAcctlist");
         var self = this;
         action.setCallback(this, function (actionResult) {
-          const accList = [{
+            const accList = [{
                 label: '',
                 value: ''
             }];
@@ -13,7 +13,7 @@
                     value: acc.Id
                 });
             });
-            component.set('v.accounts',accList );
+            component.set('v.accounts', accList);
         });
         $A.enqueueAction(action);
     },
@@ -34,5 +34,18 @@
             component.set('v.opportunities', oppList);
         });
         $A.enqueueAction(action);
+    },
+    createObjectData: function (component, event) {
+        // get the contactList from component and add(push) New Object to List  
+        var RowItemList = component.get("v.contactList");
+        RowItemList.push({
+            'chk': 'false',
+            'selectedOPP': '',
+            'PName': '',
+            'amt': '',
+            'stage': ''
+        });
+        // set the updated list to attribute (contactList) again    
+        component.set("v.contactList", RowItemList);
     }
 })
