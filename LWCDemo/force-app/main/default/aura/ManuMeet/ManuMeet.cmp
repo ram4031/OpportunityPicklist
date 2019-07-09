@@ -1,82 +1,99 @@
-<aura:component implements="flexipage:availableForAllPageTypes,forceCommunity:availableForAllPageTypes" access="global" controller="opplist">
+<aura:component implements="flexipage:availableForAllPageTypes,forceCommunity:availableForAllPageTypes" access="global"
+    controller="opplist">
     <aura:attribute name="opportunities" type="list" />
     <aura:attribute name="accounts" type="list" />
     <aura:attribute name="selcacct" type="string" />
-     <aura:attribute name="fileShares" type="List" default="[{'ramesh','manu'}]" />
     <aura:handler name="init" value="{!this}" action="{!c.doinit}" />
-    
-    <lightning:combobox aura:id="selectAcc" name="status" label="Accounts"
-                                            placeholder="Choose Account"
-                                            value="{!v.selcacct}"
-                                            dropdownAlignment="right"
-                                            variant="standard"
-                                            messageWhenValueMissing="You Must Select the Value"
-                                            onchange="{!c.doSomething}"
-                                            options="{!v.accounts}"/>
-    <aura:iteration items="{!v.fileShares}" var="fileShare" indexVar="ivar">
-        
-        <div class="slds-grid slds-gutters">
-            
-            <div class="slds-col">
-                <span>  
-                    <div class="fileSharesItem">                      
-                        <ui:inputCheckbox aura:id="checkbox" label="Delete" change="{!c.onCheck}"/>
+    <aura:attribute name="contactList" type="List"
+        default="[{'chk':'false','selectedOPP':'','PName':'','amt':'','stage':''}]" />
+
+    <lightning:combobox aura:id="selectAcc" name="status" label="Accounts" placeholder="Choose Account"
+        value="{!v.selcacct}" dropdownAlignment="right" variant="standard"
+        messageWhenValueMissing="You Must Select the Value" onchange="{!c.doSomething}" options="{!v.accounts}" />
+
+
+    <table class="slds-table slds-table_bordered slds-table_cell-buffer">
+        <thead>
+            <tr class="slds-text-title_caps">
+                <th scope="col">
+                    <div class="slds-truncate">S.No</div>
+                </th>
+                <th scope="col">
+                    <div class="slds-truncate" title="First Name">First Name</div>
+                </th>
+                <th scope="col">
+                    <div class="slds-truncate" title="Last Name">Last Name</div>
+                </th>
+                <th scope="col">
+                    <div class="slds-truncate" title="Phone">Phone</div>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <aura:iteration items="{!v.contactList}" var="fileShare" indexVar="ivar">
+
+                <div class="slds-grid slds-gutters">
+
+                    <div class="slds-col">
+                        <span>
+                            <div class="fileSharesItem">
+                                <ui:inputCheckbox aura:id="checkbox" value="{!fileShare.chk}" label="Delete"
+                                    change="{!c.onCheck}" />
+                            </div>
+                        </span>
                     </div>
-                </span>
-            </div>
-            
-            <div class="slds-col">
-                <span> 
-                    <div class="fileSharesItem ">   
-                        <lightning:combobox aura:id="selectItem" name="status" label="Opportunity"
-                                            placeholder="Choose Status"
-                                            value="{!v.selectedOPP}"
-                                            dropdownAlignment="right"
-                                            variant="standard"
-                                            messageWhenValueMissing="You Must Select the Value"
-                                            options="{!v.opportunities}"/>
+
+                    <div class="slds-col">
+                        <span>
+                            <div class="fileSharesItem ">
+                                <lightning:combobox aura:id="selectItem" name="status" label="Opportunity"
+                                    placeholder="Choose Status" value="{!v.selectedOPP}" dropdownAlignment="right"
+                                    variant="standard" messageWhenValueMissing="You Must Select the Value"
+                                    options="{!v.opportunities}" />
+                            </div>
+                        </span>
                     </div>
-                </span>
-            </div>
-            
-            <div class="slds-col">
-                <span>  <div class="fileSharesItem">                      
-                    <lightning:input                       
-                                     aura:id=""
-                                     value=""
-                                     label="Product"
-                                     class="fileShares"/>
-                    </div></span>
-            </div>
-            <div class="slds-col">
-                <span>  <div class="fileSharesItem">                      
-                    <lightning:input                       
-                                     aura:id=""
-                                     value=""
-                                     label="Amount"
-                                     class="fileShares"/>
-                    </div></span>
-            </div>
-            <div class="slds-col">
-                <span>  <div class="fileSharesItem">                      
-                    <lightning:input                       
-                                     aura:id=""
-                                     value=""
-                                     label="Stage"
-                                     class="fileShares"/>
-                    </div></span>
-            </div>
-            
-            <div class="slds-col">
-                <span>
-                    <div class="slds-float_left slds-p-bottom_small">
-                        &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;<h1 class="slds-page-header__title">Add Row 
-                        <lightning:buttonIcon iconName="utility:add"  size="large" variant="bare" alternativeText="Add" onclick="{!c.addMoreShareHandler}"/>
-                        </h1>
+
+                    <div class="slds-col">
+                        <span>
+                            <div class="fileSharesItem">
+                                <lightning:input aura:id="" label="Product" value="{!fileShare.PName}"
+                                    class="fileShares" />
+                            </div>
+                        </span>
                     </div>
-                </span>
-            </div>
-        </div>
-        
-    </aura:iteration>
+                    <div class="slds-col">
+                        <span>
+                            <div class="fileSharesItem">
+                                <lightning:input aura:id="" label="Amount" value="{!fileShare.amt}"
+                                    class="fileShares" />
+                            </div>
+                        </span>
+                    </div>
+                    <div class="slds-col">
+                        <span>
+                            <div class="fileSharesItem">
+                                <lightning:input aura:id="" label="Stage" value="{!fileShare.stage}"
+                                    class="fileShares" />
+                            </div>
+                        </span>
+                    </div>
+
+                    <div class="slds-col">
+                        <span>
+                            <div class="slds-float_left slds-p-bottom_small">
+                                &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp;<h1
+                                    class="slds-page-header__title">Add Row
+                                    <lightning:buttonIcon iconName="utility:add" size="large" variant="bare"
+                                        alternativeText="Add" onclick="{!c.addNewRow}" />
+                                </h1>
+                            </div>
+                        </span>
+                    </div>
+                </div>
+
+            </aura:iteration>
+        </tbody>
+    </table>
+
 </aura:component>
