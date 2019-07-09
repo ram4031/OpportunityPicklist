@@ -16,69 +16,79 @@
         <thead>
             <tr class="slds-text-title_caps">
                 <th scope="col">
-                    <div class="slds-truncate">S.No</div>
+                    <div class="slds-truncate"></div>
                 </th>
                 <th scope="col">
-                    <div class="slds-truncate" title="First Name">First Name</div>
+                    <div class="slds-truncate" title="Opportunity">Opportunity</div>
                 </th>
                 <th scope="col">
-                    <div class="slds-truncate" title="Last Name">Last Name</div>
+                    <div class="slds-truncate" title="Product">Product</div>
                 </th>
                 <th scope="col">
-                    <div class="slds-truncate" title="Phone">Phone</div>
+                    <div class="slds-truncate" title="Amount">Amount</div>
+                </th>
+                <th scope="col">
+                    <div class="slds-truncate" title="Stage">Stage</div>
                 </th>
             </tr>
         </thead>
         <tbody>
             <aura:iteration items="{!v.contactList}" var="fileShare" indexVar="ivar">
 
-                <div class="slds-grid slds-gutters">
 
-                    <div class="slds-col">
-                        <span>
-                            <div class="fileSharesItem">
-                                <ui:inputCheckbox aura:id="checkbox" value="{!fileShare.chk}" label="Delete"
-                                    change="{!c.onCheck}" />
-                            </div>
-                        </span>
-                    </div>
-
-                    <div class="slds-col">
-                        <span>
-                            <div class="fileSharesItem ">
-                                <lightning:combobox aura:id="selectItem" name="status" label="Opportunity"
-                                    placeholder="Choose Status" value="{!v.selectedOPP}" dropdownAlignment="right"
-                                    variant="standard" messageWhenValueMissing="You Must Select the Value"
-                                    options="{!v.opportunities}" />
-                            </div>
-                        </span>
-                    </div>
-
-                    <div class="slds-col">
-                        <span>
-                            <div class="fileSharesItem">
-                                <lightning:input aura:id="" label="Product" value="{!fileShare.PName}"
-                                    class="fileShares" />
-                            </div>
-                        </span>
-                    </div>
-                    <div class="slds-col">
-                        <span>
-                            <div class="fileSharesItem">
-                                <lightning:input aura:id="" label="Amount" value="{!fileShare.amt}"
-                                    class="fileShares" />
-                            </div>
-                        </span>
-                    </div>
-                    <div class="slds-col">
-                        <span>
-                            <div class="fileSharesItem">
-                                <lightning:input aura:id="" label="Stage" value="{!fileShare.stage}"
-                                    class="fileShares" />
-                            </div>
-                        </span>
-                    </div>
-
+                <tr>
+                    <td>
+                        <div class="slds-col">
+                            <span>
+                                <div class="fileSharesItem">
+                                    <ui:inputCheckbox aura:id="checkbox" value="{!fileShare.chk}" label="Delete"
+                                        change="{!c.onCheck}" />
+                                </div>
+                            </span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="slds-col">
+                            <span>
+                                <div class="fileSharesItem ">
+                                    <lightning:combobox aura:id="selectItem" name="status" label="Opportunity"
+                                        placeholder="Choose Status" value="{!v.selectedOPP}" dropdownAlignment="right"
+                                        variant="standard" messageWhenValueMissing="You Must Select the Value"
+                                        options="{!v.opportunities}" />
+                                </div>
+                            </span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="slds-col">
+                            <span>
+                                <div class="fileSharesItem">
+                                    <lightning:input aura:id="" label="Product" value="{!fileShare.PName}"
+                                        class="fileShares" />
+                                </div>
+                            </span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="slds-col">
+                            <span>
+                                <div class="fileSharesItem">
+                                    <lightning:input aura:id="" label="Amount" value="{!fileShare.amt}"
+                                        class="fileShares" />
+                                </div>
+                            </span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="slds-col">
+                            <span>
+                                <div class="fileSharesItem">
+                                    <lightning:input aura:id="" label="Stage" value="{!fileShare.stage}"
+                                        class="fileShares" />
+                                </div>
+                            </span>
+                        </div>
+                    </td>
                     <div class="slds-col">
                         <span>
                             <div class="slds-float_left slds-p-bottom_small">
@@ -90,7 +100,7 @@
                             </div>
                         </span>
                     </div>
-                </div>
+                </tr>
 
             </aura:iteration>
         </tbody>
